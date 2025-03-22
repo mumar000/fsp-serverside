@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI).then(()=>{
 
 //import routes 
 
-const UserRouter = require('../routes/User.route');
+const UserRouter = require('./routes/User.route');
 
 
 
