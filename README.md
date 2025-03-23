@@ -70,7 +70,8 @@ A backend system for managing visa applications with three types of forms: Study
 ```json
 {
     "status": "Approved", // or "Rejected"
-    "admin_notes": "Request approved, credentials sent to user"
+    "email_address" : "demo@gmail.com",
+    "phone_number" : "xxxxxxxxxxx"
 }
 ```
 - **Response**: Updated request object
