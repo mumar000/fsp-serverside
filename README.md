@@ -187,7 +187,7 @@ npm install
 3. Create `.env` file with required variables
 4. Start the server:
 ```bash
-npm start
+npx nodemon
 ```
 
 ## Security Features
