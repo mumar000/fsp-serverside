@@ -13,7 +13,6 @@ app.use(express.json());
 
 
 //mongoose connections
-
 mongoose.connect(process.env.MONGODB_URI).then(()=>{
   console.log('Connected to MongoDB');
 }).catch((err)=>{
@@ -21,13 +20,14 @@ mongoose.connect(process.env.MONGODB_URI).then(()=>{
 })
 
 //import routes 
-
 const UserRouter = require('./routes/User.route');
+const RequestRouter = require('./routes/Request.route');
 
 
 
 //routes
 app.use('/api/users',UserRouter)
+app.use('/api/requests', RequestRouter)
 
 
 //starting the server
