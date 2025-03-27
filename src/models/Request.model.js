@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { sendNewRequestEmail, sendStatusUpdateEmail } = require('../utils/emailService');
 
 const RequestSchema = new mongoose.Schema({
     email_address: {
@@ -26,5 +27,23 @@ const RequestSchema = new mongoose.Schema({
         type: Date
     }
 }, { timestamps: true });
+
+
+//not working so removed
+
+// // Send email to admin when new request is created
+// RequestSchema.post('save', async function(doc) {
+//     if (doc.isNew) {
+//         await sendNewRequestEmail(process.env.ADMIN_EMAIL, doc);
+//     }
+// });
+
+// Send email to requester when status changes
+RequestSchema.pre('save', async function(next) {
+    if (this.isModified('status')) {
+        await sendStatusUpdateEmail(this.email_address, this.status);
+    }
+    next();
+});
 
 module.exports = mongoose.model('Request', RequestSchema); 

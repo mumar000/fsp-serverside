@@ -1,6 +1,7 @@
 const Request = require('../models/Request.model');
 const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
+const { sendNewRequestEmail } = require('../utils/emailService');
 // Create a new request (public)
 const createRequest = async (req, res) => {
     try {
@@ -36,6 +37,9 @@ const createRequest = async (req, res) => {
         });
 
         await request.save();
+
+        // Send email to admin
+        await sendNewRequestEmail(process.env.ADMIN_EMAIL, request);
 
         res.status(201).json({
             message: 'Request submitted successfully',
