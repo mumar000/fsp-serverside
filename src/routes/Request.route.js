@@ -7,7 +7,7 @@ const {
     processRequest,
     getRequestById
 } = require('../controllers/request.controller');
-const auth = require('../middleware/auth.middleware');
+
 
 
 // Protected routes (admin only)

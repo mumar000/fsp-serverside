@@ -4,6 +4,7 @@ const WorkPermit = require('../models/workPermit.model');
 const VisitVisa = require('../models/visitVisa.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { sendFormSubmissionConfirmationMail, sendWelcomeEmail } = require('../utils/emailService');
 
 // Admin Registration
 const registerAdmin = async (req, res) => {
@@ -115,6 +116,9 @@ const loginUser = async (req, res) => {
             { expiresIn: '24h' }
         );
 
+         //sending welcome message
+        await sendWelcomeEmail(user.contact_details.email_address);
+
         res.json({
             message: 'Login successful',
             token,
@@ -208,6 +212,8 @@ const submitForm = async (req, res) => {
         // Update user with form reference
         user.form_reference = formSubmission._id;
         await user.save();
+
+        await sendFormSubmissionConfirmationMail(user.contact_details.email_address , user.form_type);
 
         res.status(201).json({
             message: 'Form submitted successfully',
