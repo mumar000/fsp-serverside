@@ -6,7 +6,8 @@ const {
     loginUser, 
     getAllUsers,
     submitForm,
-    getUserForm
+    getUserForm,
+    getAllForms
 } = require('../controllers/User.controller');
 const { uploadDocuments } = require('../middleware/upload.middleware');
 
@@ -15,6 +16,7 @@ router.post('/admin/login', loginAdmin);
 router.post('/admin/register', registerAdmin);
 router.get('/getallusers', getAllUsers);
 router.post('/form/submit', uploadDocuments, submitForm); 
-router.get('/form', getUserForm); 
+router.get('/form/:user', getUserForm); // get form by user id
+router.get('/all/forms/:formtype', getAllForms); // get all form by form type
 
 module.exports = router;

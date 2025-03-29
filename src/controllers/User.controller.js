@@ -227,7 +227,7 @@ const submitForm = async (req, res) => {
 // Get user's form submission
 const getUserForm = async (req, res) => {
     try {
-        const userId = req.user.id;
+        const userId = req.params.user;
         const user = await User.findById(userId).populate('form_reference');
 
         if (!user) {
@@ -244,11 +244,37 @@ const getUserForm = async (req, res) => {
     }
 };
 
+const getAllForms  = async (req,res)=>{
+    try {
+        const {formtype} = req.params;
+        let allFormsData ;
+            
+        switch (formtype) {
+            case'study visa':
+                allFormsData = await StudyVisa.find();
+                break;
+            case 'work permit':
+                allFormsData = await WorkPermit.find();
+                break;
+            case 'visit visa':
+                allFormsData = await VisitVisa.find();
+                break;
+            default:
+                return res.status(400).json({ message: 'Invalid form type' });
+        }
+        res.json(allFormsData);
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching forms', error: error.message });
+    }
+} 
+
 module.exports = {
     registerAdmin,
     loginAdmin,
     loginUser,
     getAllUsers,
     submitForm,
-    getUserForm
+    getUserForm,
+    getAllForms
 };
