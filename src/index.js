@@ -7,7 +7,11 @@ const { default: mongoose } = require('mongoose');
 
 
 //middlewares
-app.use(cors());
+app.use(cors(
+  { origin: ['http://localhost:4080',
+    'http://localhost:5173']
+   } , // allow requests from this origin only
+));
 app.use(express.json());
 
 
