@@ -7,7 +7,7 @@ const {
     getAllUsers,
     submitForm,
     getUserForm
-} = require('../controllers/user.controller');
+} = require('../controllers/User.controller');
 const { uploadDocuments } = require('../middleware/upload.middleware');
 
 router.post('/login', loginUser); 
