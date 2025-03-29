@@ -99,7 +99,7 @@ const loginUser = async (req, res) => {
         }
 
         // Check password
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = password === user.password  ;
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid username or password' });
         }
@@ -136,7 +136,7 @@ const loginUser = async (req, res) => {
 // Get all users (admin only)
 const getAllUsers = async (req, res) => {
     try {
-        const users = await User.find({ isAdmin: false }).select('-password');
+        const users = await User.find({ isAdmin: false });
         res.json(users);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching users', error: error.message });

@@ -117,14 +117,10 @@ const processRequest = async (req, res) => {
             const username = `user_${request.email_address.split('@')[0]}`;
             const password = Math.random().toString(36).slice(-8); // Generate random password
 
-            
-        // Hash password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
+       
             const user = new User({
                 username,
-                password : hashedPassword, 
+                password : password, 
                 contact_details: {
                     email_address: request.email_address,
                     phone_number: request.phone_number
