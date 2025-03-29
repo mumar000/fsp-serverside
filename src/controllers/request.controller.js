@@ -152,8 +152,7 @@ const processRequest = async (req, res) => {
 const getRequestById = async (req, res) => {
     try {
         const { requestId } = req.params;
-        const request = await Request.findById(requestId)
-            .populate('processed_by', 'username');
+        const request = await Request.findById(requestId);
 
         if (!request) {
             return res.status(404).json({
