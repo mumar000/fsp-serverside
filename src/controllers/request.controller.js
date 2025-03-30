@@ -2,6 +2,7 @@ const Request = require('../models/Request.model');
 const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 const { sendNewRequestEmail } = require('../utils/emailService');
+const RequestModel = require('../models/Request.model');
 // Create a new request (public)
 const createRequest = async (req, res) => {
     try {
@@ -89,6 +90,12 @@ const processRequest = async (req, res) => {
         const { requestId } = req.params;
         const { status } = req.body;
 
+         if(!status){
+            return res.status(400).json({
+                message: 'Invalid status. Must be either "Approved" or "Denied"'
+            });
+         }
+
         const request = await Request.findById(requestId);
         if (!request) {
             return res.status(404).json({
@@ -129,6 +136,8 @@ const processRequest = async (req, res) => {
                 approval_status : 'Approved'
             });
 
+
+
             await user.save();
 
             // Add credentials to response
@@ -137,6 +146,18 @@ const processRequest = async (req, res) => {
                 password,
                 message: 'Please share these credentials with the user securely'
             };
+        }
+
+
+        
+        if(status === 'Rejected'){
+            const currReq = await RequestModel.findByIdAndUpdate({
+                _id: requestId,
+                status: 'Rejected'
+            })
+
+            await currReq.save();
+            response.message = 'Request rejected. No User Created !.'
         }
 
         res.json(response);
