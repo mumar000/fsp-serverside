@@ -20,4 +20,5 @@ router.post('/form/submit',auth, uploadDocuments, submitForm);
 router.get('/form/:user', getUserForm); // get form by user id
 router.get('/all/forms/:formtype', getAllForms); // get all form by form type
 
+
 module.exports = router;

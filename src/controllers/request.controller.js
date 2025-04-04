@@ -59,7 +59,7 @@ const getAllRequests = async (req, res) => {
     try {
         const requests = await Request.find()
             .sort({ createdAt: -1 })
-            .populate('processed_by', 'username');
+            // .populate('processed_by', 'username');
         res.json(requests);
     } catch (error) {
         res.status(500).json({

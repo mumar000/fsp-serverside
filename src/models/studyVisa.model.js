@@ -33,11 +33,11 @@ const StudyVisaSchema = new mongoose.Schema({
     financial_details: {
         source_of_funding: { type: String, required: true },
         sponsor_details: { type: String },
-        bank_statements: { type: String, required: true } // URL to uploaded file
+        bank_statements: { type: String, required: false } // URL to uploaded file
     },
     visa_history: {
-        previous_visa_applications: { type: Boolean, required: true },
-        visa_refusal: { type: Boolean, required: true },
+        previous_visa_applications: { type: String, required: true },
+        visa_refusal: { type: String, required: true },
         details_of_previous_visas: { type: String }
     },
     uploaded_documents: {
@@ -54,16 +54,14 @@ const StudyVisaSchema = new mongoose.Schema({
         full_name: { type: String, required: true },
         relationship: { type: String, required: true },
         phone_number: { type: String, required: true },
-        email_address: { type: String, required: true }
-    },
-    study_gap_explanation: { type: String },
-    language_proficiency: {
+        email_address: { type: String, required: true },
+        study_gap_explanation:{ type:String},
         native_language: { type: String, required: true },
         other_languages_spoken: { type: String },
         language_certification_details: { type: String }
     },
     declaration: {
-        terms_and_conditions: { type: Boolean, required: true },
+        terms_and_conditions: { type: String, required: true },
         digital_signature: { type: String }
     },
     status: {

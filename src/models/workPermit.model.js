@@ -23,8 +23,8 @@ const WorkPermitSchema = new mongoose.Schema({
     special_skills: { type: String }
   },
   visa_history: {
-    previous_visa_applications: { type: Boolean, required: true },
-    visa_refusal: { type: Boolean, required: true },
+    previous_visa_applications: { type: String, required: true },
+    visa_refusal: { type: String, required: true },
     details_of_previous_visas: { type: String }
   },
   uploaded_documents: {
@@ -39,7 +39,7 @@ const WorkPermitSchema = new mongoose.Schema({
     email_address: { type: String, required: true }
   },
   declaration: {
-    terms_and_conditions: { type: Boolean, required: true },
+    terms_and_conditions: { type: String, required: true },
     digital_signature: { type: String }
   }
 }, { timestamps: true });

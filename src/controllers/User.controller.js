@@ -148,6 +148,7 @@ const submitForm = async (req, res) => {
     try {
         const userId = req.user.id;
         const formData = req.body;
+        console.log(formData)
 
         // Get user and check if they already have a form submission
         const user = await User.findById(userId);

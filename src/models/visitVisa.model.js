@@ -28,7 +28,7 @@ const VisitVisaSchema = new mongoose.Schema({
     employer_name: { type: String },
     job_title: { type: String },
     work_address: { type: String },
-    monthly_income: { type: Number }
+    monthly_income: { type: String }
   },
   financial_details: {
     source_of_funding: { type: String, required: true },
@@ -36,9 +36,9 @@ const VisitVisaSchema = new mongoose.Schema({
     sponsor_information: { type: String }
   },
   visa_history: {
-    previous_visas_issued: { type: Boolean, required: true },
+    previous_visas_issued: { type: String, required: true },
     details_of_previous_visits: { type: String },
-    visa_refusal: { type: Boolean, required: true }
+    visa_refusal: { type: String, required: true }
   },
   uploaded_documents: {
     bank_statement: { type: String, required: true },
