@@ -30,7 +30,12 @@ mongoose.connect(process.env.MONGODB_URI).then(()=>{
 const UserRouter = require('./routes/User.route');
 const RequestRouter = require('./routes/Request.route');
 
-
+app.get('/',(req,res) => {
+  return res.status(200).send({
+    status:true,
+    message:'Foreign Study Planner Server is Running'
+  })
+})
 
 //routes
 app.use('/api/users',UserRouter)
