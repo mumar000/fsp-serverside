@@ -33,7 +33,7 @@ const RequestRouter = require('./routes/Request.route');
 app.get('/',(req,res) => {
   return res.status(200).send({
     status:true,
-    message:'Foreign Study Planner Server is Running'
+    message:'FSP Server is Running'
   })
 })
 

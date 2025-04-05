@@ -56,7 +56,7 @@ const VisitVisaSchema = new mongoose.Schema({
     property_assets_detail: { type: String }
   },
   declaration: {
-    terms_and_conditions: { type: Boolean, required: true },
+    terms_and_conditions: { type: String, required: true },
     digital_signature: { type: String }
   }
 }, { timestamps: true });
